@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-10-28T13:50:55+00:00\n"
+"POT-Creation-Date: 2025-10-28T13:55:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: formulario-wizard-modal\n"
@@ -27,4 +27,72 @@ msgstr ""
 #. Author of the plugin
 #: formulario-wizard.php
 msgid "Gabriel Souza do Carmo"
+msgstr ""
+
+#: formulario-wizard.php:28
+msgid "Fechar"
+msgstr ""
+
+#: formulario-wizard.php:32
+msgid "Vamos ajudar você a identificar os termos DeCS/MeSH em seu texto."
+msgstr ""
+
+#: formulario-wizard.php:41
+msgid "Coloque seu texto aqui:"
+msgstr ""
+
+#: formulario-wizard.php:45
+#: formulario-wizard.php:73
+msgid "Próximo"
+msgstr ""
+
+#: formulario-wizard.php:51
+msgid "Qual o idioma do texto?"
+msgstr ""
+
+#: formulario-wizard.php:53
+#: formulario-wizard.php:62
+#: formulario-wizard.php:81
+msgid "Não sei"
+msgstr ""
+
+#: formulario-wizard.php:54
+#: formulario-wizard.php:63
+#: formulario-wizard.php:82
+msgid "Francês"
+msgstr ""
+
+#: formulario-wizard.php:55
+#: formulario-wizard.php:64
+#: formulario-wizard.php:83
+msgid "Português"
+msgstr ""
+
+#: formulario-wizard.php:56
+#: formulario-wizard.php:65
+#: formulario-wizard.php:84
+msgid "Espanhol"
+msgstr ""
+
+#: formulario-wizard.php:57
+#: formulario-wizard.php:66
+#: formulario-wizard.php:85
+msgid "Inglês"
+msgstr ""
+
+#: formulario-wizard.php:60
+msgid "Interface:"
+msgstr ""
+
+#: formulario-wizard.php:70
+#: formulario-wizard.php:89
+msgid "Voltar"
+msgstr ""
+
+#: formulario-wizard.php:79
+msgid "Em qual idioma quer os descritores?"
+msgstr ""
+
+#: formulario-wizard.php:92
+msgid "Enviar"
 msgstr ""

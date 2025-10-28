@@ -10,13 +10,14 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('FWM_TD', 'formulario-wizard-modal');
-
+add_action('plugins_loaded', function () {
+  load_plugin_textdomain('formulario-wizard-modal', false, dirname(plugin_basename(__FILE__)) . '/languages');
+});
 /**
  * Carrega o domínio de tradução (Polylang/GlotPress usam os .po/.mo do plugin)
  */
 add_action('plugins_loaded', function () {
-  load_plugin_textdomain(FWM_TD, false, dirname(plugin_basename(__FILE__)) . '/languages');
+  load_plugin_textdomain('formulario-wizard-modal', false, dirname(plugin_basename(__FILE__)) . '/languages');
 });
 
 // --- Shortcode ---
@@ -25,71 +26,74 @@ function formulario_wizard_modal_shortcode() {
     ?>
     <div id="formWizardModal" class="form-modal" role="dialog" aria-modal="true" aria-labelledby="fwm-title" aria-hidden="true">
       <div class="form-modal-content">
-        <button type="button" class="form-modal-close" aria-label="<?php echo esc_attr__('Fechar', FWM_TD); ?>">&times;</button>
+        <button type="button" class="form-modal-close" aria-label="<?php echo esc_attr__('Fechar', 'formulario-wizard-modal'); ?>">&times;</button>
 
         <div class="divTitle">
             <span id="fwm-title" class="textTitle">
-              <?php echo esc_html__('Vamos ajudar você a identificar os termos DeCS/MeSH em seu texto.', FWM_TD); ?>
+              <?php echo esc_html__('Vamos ajudar você a identificar os termos DeCS/MeSH em seu texto.', 'formulario-wizard-modal'); ?>
             </span><br>
-            <!-- <span class="textSub"><?php // echo esc_html__('Preencha os campos abaixo', FWM_TD); ?></span> -->
+            <!-- <span class="textSub"><?php // echo esc_html__('Preencha os campos abaixo', 'formulario-wizard-modal'); ?></span> -->
         </div>
 
         <form id="multiStepForm" action="https://decsfinder.bvsalud.org/dmf" method="POST" novalidate>
 
           <!-- Etapa 1 -->
           <div class="form-step active">
-            <label for="fwm-inputText"><?php echo esc_html__('Coloque seu texto aqui:', FWM_TD); ?></label>
+            <label for="fwm-inputText"><?php echo esc_html__('Coloque seu texto aqui:', 'formulario-wizard-modal'); ?></label>
             <textarea id="fwm-inputText" name="inputText" rows="12" aria-required="true"></textarea>
 
             <button type="button" class="next-step">
-              <?php echo esc_html__('Próximo', FWM_TD); ?>
+              <?php echo esc_html__('Próximo', 'formulario-wizard-modal'); ?>
             </button>
           </div>
 
           <!-- Etapa 2 -->
           <div class="form-step">
-            <label for="inputLang"><?php echo esc_html__('Qual o idioma do texto?', FWM_TD); ?></label>
+            <label for="inputLang"><?php echo esc_html__('Qual o idioma do texto?', 'formulario-wizard-modal'); ?></label>
             <select name="inputLang" id="inputLang">
-              <option value=""><?php echo esc_html__('Não sei', FWM_TD); ?></option>
-              <option value="fr"><?php echo esc_html__('Francês', FWM_TD); ?></option>
-              <option value="pt"><?php echo esc_html__('Português', FWM_TD); ?></option>
-              <option value="es"><?php echo esc_html__('Espanhol', FWM_TD); ?></option>
-              <option value="en"><?php echo esc_html__('Inglês', FWM_TD); ?></option>
+              <option value=""><?php echo esc_html__('Não sei', 'formulario-wizard-modal'); ?></option>
+              <option value="fr"><?php echo esc_html__('Francês', 'formulario-wizard-modal'); ?></option>
+              <option value="pt"><?php echo esc_html__('Português', 'formulario-wizard-modal'); ?></option>
+              <option value="es"><?php echo esc_html__('Espanhol', 'formulario-wizard-modal'); ?></option>
+              <option value="en"><?php echo esc_html__('Inglês', 'formulario-wizard-modal'); ?></option>
             </select>
-
-            <label for="lang"><?php echo esc_html__('Interface:', FWM_TD); ?></label>
+          <!--
+            <label for="lang"><?php echo esc_html__('Interface:', 'formulario-wizard-modal'); ?></label>
             <select name="lang" id="lang">
-              <option value=""><?php echo esc_html__('Não sei', FWM_TD); ?></option>
-              <option value="fr"><?php echo esc_html__('Francês', FWM_TD); ?></option>
-              <option value="pt"><?php echo esc_html__('Português', FWM_TD); ?></option>
-              <option value="es"><?php echo esc_html__('Espanhol', FWM_TD); ?></option>
-              <option value="en"><?php echo esc_html__('Inglês', FWM_TD); ?></option>
+              <option value=""><?php echo esc_html__('Não sei', 'formulario-wizard-modal'); ?></option>
+              <option value="fr"><?php echo esc_html__('Francês', 'formulario-wizard-modal'); ?></option>
+              <option value="pt"><?php echo esc_html__('Português', 'formulario-wizard-modal'); ?></option>
+              <option value="es"><?php echo esc_html__('Espanhol', 'formulario-wizard-modal'); ?></option>
+              <option value="en"><?php echo esc_html__('Inglês', 'formulario-wizard-modal'); ?></option>
             </select>
+            --->
+            <input type="hidden" value="<?=pll_current_language();?>" name="lang" id="lang">
+
 
             <button type="button" class="prev-step">
-              <?php echo esc_html__('Voltar', FWM_TD); ?>
+              <?php echo esc_html__('Voltar', 'formulario-wizard-modal'); ?>
             </button>
             <button type="button" class="next-step">
-              <?php echo esc_html__('Próximo', FWM_TD); ?>
+              <?php echo esc_html__('Próximo', 'formulario-wizard-modal'); ?>
             </button>
           </div>
 
           <!-- Etapa 3 -->
           <div class="form-step">
-            <label for="outLang"><?php echo esc_html__('Em qual idioma quer os descritores?', FWM_TD); ?></label>
+            <label for="outLang"><?php echo esc_html__('Em qual idioma quer os descritores?', 'formulario-wizard-modal'); ?></label>
             <select name="outLang" id="outLang">
-              <option value=""><?php echo esc_html__('Não sei', FWM_TD); ?></option>
-              <option value="fr"><?php echo esc_html__('Francês', FWM_TD); ?></option>
-              <option value="pt"><?php echo esc_html__('Português', FWM_TD); ?></option>
-              <option value="es"><?php echo esc_html__('Espanhol', FWM_TD); ?></option>
-              <option value="en"><?php echo esc_html__('Inglês', FWM_TD); ?></option>
+              <option value=""><?php echo esc_html__('Não sei', 'formulario-wizard-modal'); ?></option>
+              <option value="fr"><?php echo esc_html__('Francês', 'formulario-wizard-modal'); ?></option>
+              <option value="pt"><?php echo esc_html__('Português', 'formulario-wizard-modal'); ?></option>
+              <option value="es"><?php echo esc_html__('Espanhol', 'formulario-wizard-modal'); ?></option>
+              <option value="en"><?php echo esc_html__('Inglês', 'formulario-wizard-modal'); ?></option>
             </select>
 
             <button type="button" class="prev-step">
-              <?php echo esc_html__('Voltar', FWM_TD); ?>
+              <?php echo esc_html__('Voltar', 'formulario-wizard-modal'); ?>
             </button>
-            <button type="submit" id="enviarFormulario">
-              <?php echo esc_html__('Enviar', FWM_TD); ?>
+            <button type="submit" id="enviarFormulario" class="submit-step">
+              <?php echo esc_html__('Enviar', 'formulario-wizard-modal'); ?>
             </button>
           </div>
 
@@ -129,19 +133,15 @@ function formulario_wizard_modal_css() { ?>
 
 /* Modal oculto */
 .form-modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0; top: 0;
+  display: none;  position: fixed;
+  z-index: 9999;  left: 0; top: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
+  justify-content: center;  align-items: center;
 }
 .form-modal-content {
   background: #fff;
-  padding: 25px;
-  width: 90%;
+  padding: 25px;  width: 90%;
   max-width: 450px;
   border-radius: 10px;
   position: relative;
@@ -150,22 +150,25 @@ function formulario_wizard_modal_css() { ?>
 }
 .form-modal-close {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  line-height: 1;
+  top: 10px;  right: 15px;  font-size: 24px;
+  cursor: pointer;  background: transparent;
+  border: 0;  line-height: 1;
+  color: #426a5a;
+  padding: 0px;
 }
-.next-step, .prev-step{
+.next-step, .prev-step, .submit-step{
   background-color: #426a5a;
   color: #fff;
   border: none;
   padding: 8px 12px;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: pointer; transition: 0.4s;
 }
+.next-step:hover, .prev-step:hover, .submit-step:hover{
+  background-color: #b8e22d !important;
+  color: #426a5a;
+}
+
 .divTitle{
   margin-bottom:22px;
 }

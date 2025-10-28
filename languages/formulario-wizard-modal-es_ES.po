@@ -1,0 +1,90 @@
+# Copyright (C) 2025 Gabriel Souza do Carmo
+# This file is distributed under the same license as the Formulário Wizard Modal plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Formulário Wizard Modal 1.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/formulario-wizard-"
+"modal\n"
+"POT-Creation-Date: 2025-10-28T13:55:44+00:00\n"
+"PO-Revision-Date: 2025-10-28 11:38-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+"X-Domain: formulario-wizard-modal\n"
+
+#. Plugin Name of the plugin
+#: formulario-wizard.php
+msgid "Formulário Wizard Modal"
+msgstr ""
+
+#. Description of the plugin
+#: formulario-wizard.php
+msgid ""
+"Adiciona um shortcode [formulario_wizard_modal] que cria um modal oculto, "
+"abrível por qualquer botão nativo."
+msgstr ""
+
+#. Author of the plugin
+#: formulario-wizard.php
+msgid "Gabriel Souza do Carmo"
+msgstr ""
+
+#: formulario-wizard.php:28
+msgid "Fechar"
+msgstr "Cerrar"
+
+#: formulario-wizard.php:32
+msgid "Vamos ajudar você a identificar os termos DeCS/MeSH em seu texto."
+msgstr "Te ayudaremos a identificar los términos DeCS/MeSH en tu texto."
+
+#: formulario-wizard.php:41
+msgid "Coloque seu texto aqui:"
+msgstr "Coloca tu texto aquí:"
+
+#: formulario-wizard.php:45 formulario-wizard.php:73
+msgid "Próximo"
+msgstr "Siguiente"
+
+#: formulario-wizard.php:51
+msgid "Qual o idioma do texto?"
+msgstr "¿Cuál es el idioma del texto?"
+
+#: formulario-wizard.php:53 formulario-wizard.php:62 formulario-wizard.php:81
+msgid "Não sei"
+msgstr "No lo sé"
+
+#: formulario-wizard.php:54 formulario-wizard.php:63 formulario-wizard.php:82
+msgid "Francês"
+msgstr "Francés"
+
+#: formulario-wizard.php:55 formulario-wizard.php:64 formulario-wizard.php:83
+msgid "Português"
+msgstr "Portugués"
+
+#: formulario-wizard.php:56 formulario-wizard.php:65 formulario-wizard.php:84
+msgid "Espanhol"
+msgstr "Español"
+
+#: formulario-wizard.php:57 formulario-wizard.php:66 formulario-wizard.php:85
+msgid "Inglês"
+msgstr "Inglés"
+
+#: formulario-wizard.php:60
+msgid "Interface:"
+msgstr ""
+
+#: formulario-wizard.php:70 formulario-wizard.php:89
+msgid "Voltar"
+msgstr "Volver"
+
+#: formulario-wizard.php:79
+msgid "Em qual idioma quer os descritores?"
+msgstr "¿En qué idioma deseas los descriptores?"
+
+#: formulario-wizard.php:92
+msgid "Enviar"
+msgstr "Enviar"
