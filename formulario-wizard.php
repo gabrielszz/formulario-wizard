@@ -2,81 +2,95 @@
 /**
  * Plugin Name: Formulário Wizard Modal
  * Description: Adiciona um shortcode [formulario_wizard_modal] que cria um modal oculto, abrível por qualquer botão nativo.
- * Version: 1.2
+ * Version: 1.3
  * Author: Gabriel Souza do Carmo
+ * Text Domain: formulario-wizard-modal
+ * Domain Path: /languages
  */
 
 if (!defined('ABSPATH')) exit;
+
+define('FWM_TD', 'formulario-wizard-modal');
+
+/**
+ * Carrega o domínio de tradução (Polylang/GlotPress usam os .po/.mo do plugin)
+ */
+add_action('plugins_loaded', function () {
+  load_plugin_textdomain(FWM_TD, false, dirname(plugin_basename(__FILE__)) . '/languages');
+});
 
 // --- Shortcode ---
 function formulario_wizard_modal_shortcode() {
     ob_start();
     ?>
-    <div id="formWizardModal" class="form-modal">
+    <div id="formWizardModal" class="form-modal" role="dialog" aria-modal="true" aria-labelledby="fwm-title" aria-hidden="true">
       <div class="form-modal-content">
-        
-        <span class="form-modal-close">&times;</span>
+        <button type="button" class="form-modal-close" aria-label="<?php echo esc_attr__('Fechar', FWM_TD); ?>">&times;</button>
+
         <div class="divTitle">
-            <span class="textTitle">Vamos ajudar você identificar os termos DeCS/MeSH em seu texto.</span><BR>
-            <!--<span class="textSub">Preencha os campos abaixo</span>-->
+            <span id="fwm-title" class="textTitle">
+              <?php echo esc_html__('Vamos ajudar você a identificar os termos DeCS/MeSH em seu texto.', FWM_TD); ?>
+            </span><br>
+            <!-- <span class="textSub"><?php // echo esc_html__('Preencha os campos abaixo', FWM_TD); ?></span> -->
         </div>
+
         <form id="multiStepForm" action="https://decsfinder.bvsalud.org/dmf" method="POST" novalidate>
-          
+
           <!-- Etapa 1 -->
           <div class="form-step active">
+            <label for="fwm-inputText"><?php echo esc_html__('Coloque seu texto aqui:', FWM_TD); ?></label>
+            <textarea id="fwm-inputText" name="inputText" rows="12" aria-required="true"></textarea>
 
-          
-            <label>Coloque seu texto aqui:</label>
-            <textarea name="inputText" rows="12"></textarea>
-
-            <button type="button" class="next-step">Próximo</button>
+            <button type="button" class="next-step">
+              <?php echo esc_html__('Próximo', FWM_TD); ?>
+            </button>
           </div>
 
           <!-- Etapa 2 -->
           <div class="form-step">
-
-            <label>Qual o idioma do texto?</label>
+            <label for="inputLang"><?php echo esc_html__('Qual o idioma do texto?', FWM_TD); ?></label>
             <select name="inputLang" id="inputLang">
-              <option value="">Não sei</option>
-              <option value="fr">Francês</option>
-              <option value="pt">Português</option>
-              <option value="es">Espanhol</option>
-              <option value="en">Inglês</option>
+              <option value=""><?php echo esc_html__('Não sei', FWM_TD); ?></option>
+              <option value="fr"><?php echo esc_html__('Francês', FWM_TD); ?></option>
+              <option value="pt"><?php echo esc_html__('Português', FWM_TD); ?></option>
+              <option value="es"><?php echo esc_html__('Espanhol', FWM_TD); ?></option>
+              <option value="en"><?php echo esc_html__('Inglês', FWM_TD); ?></option>
             </select>
 
-
-
-
-
-            <label>Interface:</label>
+            <label for="lang"><?php echo esc_html__('Interface:', FWM_TD); ?></label>
             <select name="lang" id="lang">
-              <option value="">Não sei</option>
-              <option value="fr">Francês</option>
-              <option value="pt">Português</option>
-              <option value="es">Espanhol</option>
-              <option value="en">Inglês</option>
+              <option value=""><?php echo esc_html__('Não sei', FWM_TD); ?></option>
+              <option value="fr"><?php echo esc_html__('Francês', FWM_TD); ?></option>
+              <option value="pt"><?php echo esc_html__('Português', FWM_TD); ?></option>
+              <option value="es"><?php echo esc_html__('Espanhol', FWM_TD); ?></option>
+              <option value="en"><?php echo esc_html__('Inglês', FWM_TD); ?></option>
             </select>
 
-    
-
-            <button type="button" class="prev-step">Voltar</button>
-            <button type="button" class="next-step">Próximo</button>
+            <button type="button" class="prev-step">
+              <?php echo esc_html__('Voltar', FWM_TD); ?>
+            </button>
+            <button type="button" class="next-step">
+              <?php echo esc_html__('Próximo', FWM_TD); ?>
+            </button>
           </div>
 
           <!-- Etapa 3 -->
           <div class="form-step">
-
-            <label>Em qual idioma quer os descritores ?</label>
+            <label for="outLang"><?php echo esc_html__('Em qual idioma quer os descritores?', FWM_TD); ?></label>
             <select name="outLang" id="outLang">
-              <option value="">Não sei</option>
-              <option value="fr">Francês</option>
-              <option value="pt">Português</option>
-              <option value="es">Espanhol</option>
-              <option value="en">Inglês</option>
+              <option value=""><?php echo esc_html__('Não sei', FWM_TD); ?></option>
+              <option value="fr"><?php echo esc_html__('Francês', FWM_TD); ?></option>
+              <option value="pt"><?php echo esc_html__('Português', FWM_TD); ?></option>
+              <option value="es"><?php echo esc_html__('Espanhol', FWM_TD); ?></option>
+              <option value="en"><?php echo esc_html__('Inglês', FWM_TD); ?></option>
             </select>
 
-            <button type="button" class="prev-step">Voltar</button>
-            <button type="submit" id="enviarFormulario">Enviar</button>
+            <button type="button" class="prev-step">
+              <?php echo esc_html__('Voltar', FWM_TD); ?>
+            </button>
+            <button type="submit" id="enviarFormulario">
+              <?php echo esc_html__('Enviar', FWM_TD); ?>
+            </button>
           </div>
 
         </form>
@@ -104,12 +118,12 @@ function formulario_wizard_modal_css() { ?>
   visibility: visible;
   opacity: 1;
 }
-#multiStepForm input, 
-#multiStepForm textarea, 
-#multiStepForm button, 
+#multiStepForm input,
+#multiStepForm textarea,
+#multiStepForm button,
 #multiStepForm select {
-  display: block; 
-  width: 100%; 
+  display: block;
+  width: 100%;
   margin: 8px 0;
 }
 
@@ -132,7 +146,7 @@ function formulario_wizard_modal_css() { ?>
   border-radius: 10px;
   position: relative;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border: 4px solid #b8e22d;
+  border: 4px solid #b8e22d;
 }
 .form-modal-close {
   position: absolute;
@@ -140,6 +154,9 @@ function formulario_wizard_modal_css() { ?>
   right: 15px;
   font-size: 24px;
   cursor: pointer;
+  background: transparent;
+  border: 0;
+  line-height: 1;
 }
 .next-step, .prev-step{
   background-color: #426a5a;
@@ -150,13 +167,13 @@ function formulario_wizard_modal_css() { ?>
   cursor: pointer;
 }
 .divTitle{
-    margin-bottom:22px;
+  margin-bottom:22px;
 }
 .textTitle{
-    color: #426a5a; font-size: 20px; font-weight: bold;
+  color: #426a5a; font-size: 20px; font-weight: bold;
 }
 .textSub{
-    font-size: 12px; font-weight: bold;
+  font-size: 12px; font-weight: bold;
 }
 </style>
 <?php }
@@ -167,7 +184,9 @@ function formulario_wizard_modal_js() { ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('formWizardModal');
-  const form = document.getElementById('multiStepForm');
+  const form  = document.getElementById('multiStepForm');
+  if (!modal || !form) return;
+
   const steps = form.querySelectorAll('.form-step');
   let currentStep = 0;
 
@@ -196,17 +215,29 @@ document.addEventListener('DOMContentLoaded', function() {
   // Modal abrir/fechar
   window.abrirFormWizard = () => {
     modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
     showStep(0);
   };
-  window.fecharFormWizard = () => modal.style.display = 'none';
-  document.querySelector('.form-modal-close').addEventListener('click', fecharFormWizard);
+  window.fecharFormWizard = () => {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  };
+  const closeBtn = document.querySelector('.form-modal-close');
+  if (closeBtn) closeBtn.addEventListener('click', fecharFormWizard);
   window.addEventListener('click', e => { if (e.target === modal) fecharFormWizard(); });
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') fecharFormWizard(); });
 
-  // Envio sem erro de foco e com todos os dados
+  // Envio garantindo todos os campos visíveis
   form.addEventListener('submit', () => {
-    steps.forEach(step => step.classList.add('active')); // garante que todos os campos estejam visíveis no envio
+    steps.forEach(step => step.classList.add('active'));
   });
 });
 </script>
 <?php }
 add_action('wp_footer', 'formulario_wizard_modal_js', 100);
+
+/**
+ * Dicas:
+ * - Gere o arquivo POT: wp i18n make-pot . languages/formulario-wizard-modal.pot
+ * - Para strings de opções dinâmicas (salvas no banco), registre-as no Polylang com pll_register_string() e recupere com pll__().
+ */
