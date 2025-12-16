@@ -35,7 +35,7 @@ function formulario_wizard_modal_shortcode() {
             <!-- <span class="textSub"><?php // echo esc_html__('Preencha os campos abaixo', 'formulario-wizard-modal'); ?></span> -->
         </div>
 
-        <form id="multiStepForm" action="https://decsfinder.bvsalud.org/dmf" method="POST" novalidate>
+        <form id="multiStepForm" action="https://decsfinder.bvsalud.org/" method="POST" novalidate>
 
           <!-- Etapa 1 -->
           <div class="form-step active">
