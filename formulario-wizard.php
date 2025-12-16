@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Formulário Wizard Modal
  * Description: Adiciona um shortcode [formulario_wizard_modal] que cria um modal oculto, abrível por qualquer botão nativo.
- * Version: 1.3
+ * Version: 1.4
  * Author: Gabriel Souza do Carmo
  * Text Domain: formulario-wizard-modal
  * Domain Path: /languages
